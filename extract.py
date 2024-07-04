@@ -1,32 +1,29 @@
 import numpy as np
 from matplotlib import pyplot as plt
-import os
 import matplotlib.pyplot as mplot
 import matplotlib
-os.remove("bulk_cond.txt")
 
 e=np.linspace(0.1,1.28,60)
 
 filename="bulk_cond.txt"
 
 for i in e:
+    #line 12-15 are used to format the variables as named in the path-to-file
     eg_dir="{0:.3f}".format(i)
     eg_file="{0:.2f}".format(i)
     name_dir='Eg_'+eg_dir
     name_file='bulk_cond'+eg_file+'.txt'
-    #print(name_dir, name_file)
+    #loads the file that contains bulk-conductance stored for a set of values of energies stored in the file location
     a=np.loadtxt('/home/tania/project1/corbino_200x80/bulk/'+ name_dir +'/'+ name_file)
+    #stores the second column of 'a'
     b=a[:,1]
-    bt=b.transpose()
-    #np.savetxt(filename,bt)
-    with open(filename, 'a') as fileObject:
+    bt=b.transpose() 
+    with open(filename, 'w') as fileObject:
     # code that computes numpy array
         np.savetxt(fileObject, bt, delimiter = ' ', newline = ' ')
         fileObject.write('\n')
 
 
-
-os.remove("edge_cond.txt")
 
 filename="edge_cond.txt"
 
@@ -40,7 +37,7 @@ for i in e:
     b=a[:,1]
     bt=b.transpose()
     #np.savetxt(filename,bt)
-    with open(filename, 'a') as fileObject:
+    with open(filename, 'w') as fileObject:
     # code that computes numpy array
         np.savetxt(fileObject, bt, delimiter = ' ', newline = ' ')
         fileObject.write('\n')
@@ -51,6 +48,7 @@ y=np.linspace(-0.20,0.20,320)
 z2=np.loadtxt('/home/tania/project1/corbino_200x80/edge_cond.txt')
 z1=np.loadtxt('/home/tania/project1/corbino_200x80/bulk_cond.txt')
 
+#plots the bulk conductance in a 2D plot as a function of energies and $E_G$
 plt.figure()
 cp1 = plt.contourf(x, y, z1.T, cmap=plt.cm.viridis,levels=[-20,0,1,2,10,20,50,80])
 cbar=plt.colorbar(cp1)
@@ -65,6 +63,7 @@ plt.title("Bulk Conductance",fontsize=20)
 plt.savefig('bulk_conductance.png', dpi=1000)
 plt.show()
 
+#plots the edge conductance in a 2D plot as a function of energies and $E_G$
 plt.figure()
 cp2 = plt.contourf(x, y, z2.T, cmap=plt.cm.viridis,levels=[-20,0,1,2,10,20,50,80])
 cbar=plt.colorbar(cp2)
