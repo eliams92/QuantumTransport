@@ -10,7 +10,9 @@ from matplotlib import pyplot as plt
 
 
 def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
-    
+    #The function converts the Hamiltoninan written in momentum space to real space with square lattice with lattice constant 'a' with commands at line 30 and line 31. 
+    #The parameters C, B, A, M, Dz, D1R, D1I, D2R, D2I become variables at this stage and can be given values when calculations need to be done.
+            
     hamiltonian = """
     
        + C * identity(4) - M * kron(sigma_z, sigma_0)
@@ -40,15 +42,13 @@ def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
     syst = kwant.Builder()
     syst.fill(template, shape, (0, r1+a))
     
-    lead = kwant.Builder(kwant.TranslationalSymmetry([a, 0]))
+    lead = kwant.Builder(kwant.TranslationalSymmetry([-a, 0]))
     lead.fill(template, lead_shape, (0, 0))
-    lead1 = kwant.Builder(kwant.TranslationalSymmetry([-a,0]))
-    lead1.fill(template, lead_shape, (0,0))
 
-    syst.attach_lead(lead, lat(0,0))
-    syst.attach_lead(lead1)
+    syst.attach_lead(lead)
+    syst.attach_lead(lead.reversed()) #the direction of the lead is reversed and is attached to the outer edge of the Corbino disc
     syst=syst.finalized() 
-#    kwant.plot(syst)             #uncomment to see the finite system
+    #kwant.plot(syst)             #uncomment to see the finite system
     return syst
 
 
@@ -59,8 +59,9 @@ def analyze_qsh(a, eg,d1r,d1i,d2r,d2i):
     params = dict(A=0.06*a, B=0.5*a2, D=0, M=eg, C=0, Dz=0.02, D2R=d2r*a, D1R=d1r, D2I=d2i*a, D1I=d1i)
     syst=qsh_system(a=a)
 
-    
+    #plots the energy eignevalues for each value of momenta in the leads
     kwant.plotter.bands(syst.leads[0], params=params, momenta=np.linspace(-0.5*np.pi, 0.5*np.pi, 401), show=False)
+    #define the plotting axis and labels
     plt.xlabel('momentum [1/A]')
     plt.ylabel('energy [eV]')
     plt.xlim(-0.5*np.pi, 0.5*np.pi)
