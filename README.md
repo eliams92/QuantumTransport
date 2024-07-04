@@ -13,6 +13,7 @@ This repository contain the codes used to perform the transport calculations on 
 4. bulk_conductance.py: Calculates the bulk conductance as a function of energies around the zero energy for a specific E_G.
 5. edge_conductance.py: Calculates the edge conductance as a function of energies around the zero energy for a specific E_G.
 6. extract.py: Plots the 2D contour plot as function of energies (eV_{dc}) along the y-axis and E_G along the x-axis.
+7. disorder.py: Introduces a random disorder (or noise) to each spatial point in Corbino disc. Useful in studying the role of disorder on transport effect.
 
 Delta_s and Delta_p are the s-wave and p-wave exciton pairings that arise from the Coulomb interactions in Type-II quantum well. They are self-consistently obtained. More details at : https://journals.aps.org/prb/abstract/10.1103/PhysRevB.106.235420
 
