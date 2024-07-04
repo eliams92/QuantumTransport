@@ -1,14 +1,3 @@
-# BHZ strip: Energy dispersion, conductance 
-# ===============================================================
-## Physics background
-# ------------------
-#  - tight-binding approximation of continuous Hamiltonians
-#
-# Kwant features highlighted
-# --------------------------
-#  - kwant.continuum.discretize
-
-
 import kwant
 import kwant.continuum
 import scipy.sparse.linalg
@@ -23,11 +12,12 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 
 
-
+#creates a 200X201 shaped 2D array with random numbers between [0,1)
 Mrand = np.random.rand(200,201)
 
 
 def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
+    #Refer to bulk_conductance.py or edge_conductance.py to understand lines 22-57.
     
     hamiltonian = """
     
@@ -72,7 +62,8 @@ def all_params(a,eg,d1r,d1i,d2r,d2i):
     a2= a*a
     r1=80
     r2=200
-        
+
+    # A function that takes a random number from Mrand and gives noise to 'mu' parameter
     def fdisorder(x,y):
         err = 0
         rsq = x**2 + y **2
@@ -115,6 +106,7 @@ def analyze_qsh(syst,params):
         
         
 def plot_disorder(pardict):
+    #function shows the distribution of disorder on the Corbino disc
     
     disofunct = pardict.get('mu')
     
