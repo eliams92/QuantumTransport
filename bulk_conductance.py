@@ -39,7 +39,7 @@ def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
         return (r1**2 <= rsq <= r2**2)
         
     #Leads are connected to measure bulk conductances in a Corbino disc. It is an infinitely long rectangular-shaped lead with a width 'W'. 
-    #A lead is built from infinity to the scattering region i.e. outer circle of the Corbino disc.
+    #A lead is built from infinity to the scattering region i.e. the Corbino disc.
     def lead_shape(site):
         (x, y) = site.pos
         return (-W/2 < y < W/2)
@@ -53,8 +53,8 @@ def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
     lead1 = kwant.Builder(kwant.TranslationalSymmetry([-a,0]))
     lead1.fill(template, lead_shape, (0,0))
 
-    syst.attach_lead(lead, lat(0,0))
-    syst.attach_lead(lead1)
+    syst.attach_lead(lead, lat(0,0)) #lead attaches itself to the inner edge of the Corbino disc
+    syst.attach_lead(lead1) #lead attaches to the outer edge of the Corbino disc
     syst=syst.finalized() 
     return syst
 
