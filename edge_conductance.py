@@ -12,7 +12,7 @@ from matplotlib import pyplot as plt
 
 
 def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
-    #The function converts the Hamiltoninan written in momentum space to real space with square lattice with lattice constant 'a' with commands at line 32 and line 33. 
+    #The function converts the Hamiltoninan written in momentum space to real space with square lattice with lattice constant 'a' with commands at line 32. 
     #The parameters C, B, A, M, Dz, D1R, D1I, D2R, D2I become variables at this stage and can be given values when calculations need to be done.
         
     hamiltonian = """
@@ -30,13 +30,14 @@ def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
     """
  
     template = kwant.continuum.discretize(hamiltonian, grid=a)
+    #The shape function defines the geometry of the real-space lattice. Only the spatial coordinates that are between 'r1' and 'r2' are considered (see line 39). 
 
     def shape(site):
         (x, y) = site.pos
         rsq = x**2 + y**2
-        return (r1**2 < rsq < r2**2)
-#        return (rsq < r2**2)
-
+        return (r1**2 <= rsq <= r2**2)
+    #Leads are connected to measure bulk conductances in a Corbino disc. It is an infinitely long rectangular-shaped lead with a width 'W'. 
+    #A lead is built from infinity to the scattering region i.e. the Corbino disc.
     def lead_shape(site):
         (x, y) = site.pos
         return (-W/2 < y < W/2 )
@@ -44,11 +45,12 @@ def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
     syst = kwant.Builder()
     syst.fill(template, shape, (0, r1+a))
     
+    #lead is defined with direction from negative infinity to the scattering region i.e the outer edge of Corbino disc
     lead = kwant.Builder(kwant.TranslationalSymmetry([-a, 0]))
     lead.fill(template, lead_shape, (0, 0))
 
     syst.attach_lead(lead)
-    syst.attach_lead(lead.reversed())
+    syst.attach_lead(lead.reversed()) #the direction of the lead is reversed and is attached to the outer edge of the Corbino disc
     syst=syst.finalized() 
     return syst
 
@@ -56,11 +58,11 @@ def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
 def analyze_qsh(a, eg,d1r,d1i,d2r,d2i):
 
     a2= a*a
-   
+    #A dictionary of values for the parameters.
     params = dict(A=0.06*a, B=0.5*a2, D=0, M=eg, C=0, Dz=0.02, D2R=d2r*a, D1R=d1r, D2I=d2i*a, D1I=d1i)
     syst=qsh_system(a=a)
  
-     
+    #data is a list that stores the bulk conductance for each value in the array 'energies'
     data =[]
     energies = np.linspace(-0.20,0.20,320)
     
@@ -75,7 +77,7 @@ def analyze_qsh(a, eg,d1r,d1i,d2r,d2i):
         #file.write("%f\n" %energy)
 
 
-    #saves the generated edge conductance as a function of energies
+    #saves the generated edge conductance as a function of energies in a .dat file
     fname="edge_cond"+str(params['M'])
     thefile = open(fname + ".dat","w")
     for i in range(len(data)):
