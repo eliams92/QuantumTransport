@@ -11,7 +11,8 @@ This repository contain the codes used to perform the transport calculations on 
 2. plot.py: Plots Re{Delta_s}, Im{Delta_s}, Re{Delta_2}, Im{Delta_2} as a function of E_G.
 3. energy_dispersion.py: Calculates the eigenvalues of the Hamiltonian and generates the edge spectrum as a function of k.
 4. bulk_conductance.py: Calculates the bulk conductance as a function of energies around the zero energy for a specific E_G.
-5. extract.py: Plots the 2D contour plot as function of energies (eV_{dc}) along the y-axis and E_G along the x-axis.
+5. edge_conductance.py: Calculates the edge conductance as a function of energies around the zero energy for a specific E_G.
+6. extract.py: Plots the 2D contour plot as function of energies (eV_{dc}) along the y-axis and E_G along the x-axis.
 
 Delta_s and Delta_p are the s-wave and p-wave exciton pairings that arise from the Coulomb interactions in Type-II quantum well. They are self-consistently obtained. More details at : https://journals.aps.org/prb/abstract/10.1103/PhysRevB.106.235420
 
