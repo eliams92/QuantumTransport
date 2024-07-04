@@ -12,7 +12,9 @@ from matplotlib import pyplot as plt
 
 
 def qsh_system(a, t=1.0, W=100, r1=80, r2=200):
-    
+    #The function converts the Hamiltoninan written in momentum space to real space with square lattice with lattice constant 'a' with commands at line 32 and line 33. 
+    #The parameters C, B, A, M, Dz, D1R, D1I, D2R, D2I become variables at this stage and can be given values when calculations need to be done.
+        
     hamiltonian = """
     
        + C * identity(4) - M * kron(sigma_z, sigma_0)
