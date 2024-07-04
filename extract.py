@@ -51,37 +51,6 @@ y=np.linspace(-0.20,0.20,320)
 z2=np.loadtxt('/home/tania/project1/corbino_200x80/edge_cond.txt')
 z1=np.loadtxt('/home/tania/project1/corbino_200x80/bulk_cond.txt')
 
-
-# Contour plotting using contourf
-#plt.figure()
-#plt.subplot(211)
-#cp1 = plt.contourf(x, y, z1.T, cmap=plt.cm.viridis,levels=[0,0.2,0.3,0.4,0.5,0.6,0.7,0.80,0.9,1,1.25,1.5,1.75,2,2.5])
-#plt.colorbar(cp1)
-#plt.title('Bulk Conductance')
-#plt.subplot(212)
-#cp2 = plt.contourf(x, y, z2.T, cmap=plt.cm.viridis,levels=[0,0.2,0.3,0.4,0.5,0.6,0.7,0.80,0.9,1,1.25,1.5,1.75,2,2.5])
-#plt.colorbar(cp2)
-#plt.title('Edge Conductance')
-#plt.savefig('conductance.pdf', format='pdf',dpi=10000)
-#plt.show()
-
-
-
-
-
-#plt.figure()
-#plt.subplot(211)
-#cp1 = plt.contourf(x, y, z1.T, cmap=plt.cm.viridis)
-#plt.colorbar(cp1)
-#plt.title('Bulk Conductance')
-#plt.subplot(212)
-#cp2 = plt.contourf(x, y, z2.T, cmap=plt.cm.viridis,levels=[0,2,80])
-#plt.colorbar(cp2)
-#plt.title('Edge Conductance')
-#plt.xticks(fontsize=20)
-#plt.savefig('conductance_full.pdf', format='pdf',dpi=1000)
-#plt.show()
-
 plt.figure()
 cp1 = plt.contourf(x, y, z1.T, cmap=plt.cm.viridis,levels=[-20,0,1,2,10,20,50,80])
 cbar=plt.colorbar(cp1)
@@ -92,7 +61,7 @@ plt.yticks(fontsize=20)
 plt.ylabel('$eV_{dc}/E_0$',fontsize=20)
 plt.xlabel('$E_G/E_0$',fontsize=20)
 plt.tight_layout()
-#plt.title("Bulk Conductance",fontsize=20)
+plt.title("Bulk Conductance",fontsize=20)
 plt.savefig('bulk_conductance.png', dpi=1000)
 plt.show()
 
