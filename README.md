@@ -34,7 +34,8 @@ D2I: Imaginary part of Delta_p
 E_G: controls the electron and hole densities and is tuned to obtain the topological phase diagram. 
 
 
-DISCLAIMER: The original code from Kwant has been modified to implement the above model. 
+This work was done using an open-source Python package called Kwant and following the documentation at: https://kwant-project.org/ 
+ 
 
 
 
