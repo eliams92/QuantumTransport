@@ -2,7 +2,10 @@
 
 Title: INTERPLAY OF QUANTUM SPIN HALL EFFECT AND SPONTANEOUS TIME-REVERSAL SYMMETRY BREAKING IN ELECTRON-HOLE BILAYERS: TRANSPORT STUDY
 
+Collaborators: Dr. Timo Hyart and Dr. V.F. Becerra
+
 Description: The electron-hole bilayer such as InAs/GaSb is a band-inverted system that also supports quantum spin Hall phase as a function of well width and electron-hole densities. However, in experiments, for long samples, this material has shown linearly increasing longitudinal resistance with device length, mean free path of which, is found to be temperature independent for a wide range of temperature of $20$mK to $4.2$K. An appearance of spontaneously broken time-reversal symmetry phase could allow elastic backscattering processes which may explain the magnitude and temperature independence of the mean free path. As this material is also a candidate for supporting correlated phases of excitons, it has been shown that there is a spontaneous time-reversal symmetry broken phase that appears between trivial and QSH phases in the topological phase diagram as a function of increasing electron-hole densities. The breaking of TRS due to the presence of excitons, leads to an unconventional topological transition where the bulk-gap closing is absent. In the paper below, we present a transport study on a Corbino disc which proposes that this TRS broken phase could be observed in an experiment through measuring bulk and edge conductances as a function of electron-hole densities. As the electron-hole densities are increased, the bulk-conductance remains zero while the edge conductance smoothly takes a quantized value around the Fermi energy, demonstrating the occurrence of a topological transition without bulk-gap closing. 
+
 
 Here, we use the Kwant package in Python to calculate bulk and edge conductance on a Corbino disc. Kwant is an efficient quantum transport package designed for topological insulators, superconductors etc. A more detailed version is available at : https://kwant-project.org/ . 
 
